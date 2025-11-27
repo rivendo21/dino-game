@@ -8,31 +8,25 @@
   width: 600px;
   height: 300px;
   margin: auto;
+  position: relative; /* <--- THIS IS THE FIX */
   background-image: url(https://media.istockphoto.com/id/635685968/photo/banff-national-park.jpg?s=612x612&w=0&k=20&c=2d65YAT9owo9zXL8F20rTb-WMw88Em238Gxty8V17wc=);
   background-size: cover;
 }
-
-#dino {
-  height: 90px;
-  width: 90px;
-  position: relative;
-  top: 225px;
-  left: 0px;
-  background-image: url(dinosaur-removebg-preview.png);
-  background-size: cover;
+.shield {
+  box-shadow: 0 0 20px 10px rgba(0, 0, 255, 0.7);
+  border-radius: 50%;
+  transition: box-shadow 0.2s;
 }
-
 #rock {
   height: 50px;
   width: 50px;
-  position: relative;
-  top: 170px;
-  left: 550px;
+  position: absolute; /* change from relative */
+  bottom: 0; /* sits on ground */
+  left: 550px; /* starting position */
   background-image: url(rock-removebg-preview.png);
   background-size: cover;
-  animation: rock 1.5s infinite;
+  animation: rock 1s infinite linear;
 }
-
 @keyframes rock {
   0% {
     left: 550px;
@@ -42,21 +36,31 @@
   }
 }
 
+#dino {
+  height: 90px;
+  width: 90px;
+  position: absolute;
+  bottom: 0; /* sits on game floor */
+  left: 0;
+  background-image: url(dinosaur-removebg-preview.png);
+  background-size: cover;
+}
+
 .jump-animation {
   animation: jump 0.5s;
 }
 
 @keyframes jump {
   0% {
-    top: 225px;
+    bottom: 0;
   }
   50% {
-    top: 100px;
-  }
+    bottom: 125px;
+  } /* jump height */
   75% {
-    top: 100px;
+    bottom: 125px;
   }
   100% {
-    top: 225px;
+    bottom: 0;
   }
 }
